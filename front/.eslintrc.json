@@ -1,0 +1,46 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["airbnb", "plugin:react/recommended"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module",
+    "parser": "@babel/eslint-parser",
+    "requireConfigFile": false,
+    "babelOptions": {
+      "configFile": "./babel.config.json"
+    }
+  },
+  "plugins": ["react"],
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "import/extensions": "off",
+    "no-use-before-define": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "no-unused-vars": "warn",
+    "import/prefer-default-export": "off",
+    "react/jsx-uses-react": "off",
+    "react/jsx-uses-vars": "warn",
+    "no-param-reassign": "off",
+    "no-console": "warn",
+    "no-alert": "warn",
+    "linebreak-style": ["error", "windows"],
+    "max-len": ["error", { "code": 120 }]
+  }
+}

@@ -1,0 +1,60 @@
+version: '3.8'
+services:
+
+  db:
+    platform: linux/amd64
+    image: postgres:13
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    networks:
+      - geoapi
+
+  cache:
+    image: redis:6.2
+    ports:
+      - "${CACHE_PORT}:${CACHE_PORT}"
+    networks:
+      - geoapi
+
+  app:
+    build: ./api
+    ports:
+      - ${PORT}:${PORT}
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      PORT: ${PORT}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_HOSTNAME: ${DB_HOSTNAME}
+      DB_PORT: ${DB_PORT}
+      GEO_API: ${GEO_API}
+      API_KEY_GEO_API: ${API_KEY_GEO_API}
+      COUNTRY_API: ${COUNTRY_API}
+      CURRENCY_API: ${CURRENCY_API}
+      API_KEY_CURRENCY_API: ${API_KEY_CURRENCY_API}
+      CACHE_PORT: ${CACHE_PORT}
+      CACHE_HOST: ${CACHE_HOST}
+    depends_on:
+      - db
+    networks:
+      - geoapi
+
+  web:
+    build: ./front
+    ports:
+      - ${PORT_WEB}:${PORT_WEB}
+    depends_on:
+      - app
+
+networks:
+  geoapi:
+    driver: bridge
+
+  

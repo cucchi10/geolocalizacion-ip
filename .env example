@@ -1,0 +1,33 @@
+NODE_ENV=production
+
+#API
+PORT=3000
+URL_API=http://localhost:3000/api
+
+#WEB
+PORT_WEB=9999
+
+# DATABASE
+DB_USERNAME=admin
+DB_PASSWORD=
+DB_NAME=geo_api
+DB_HOSTNAME=db
+DB_PORT=5432
+
+# CACHE
+CACHE_PORT=6379
+CACHE_HOST=cache
+
+## EXTERNAL APIS
+
+# GEO IPAPI
+GEO_API=http://api.ipapi.com/api/
+API_KEY_GEO_API=
+
+# COUNTRYS
+COUNTRY_API=https://restcountries.com/v3.1/all
+
+#CURRENCYS
+CURRENCY_API=https://api.apilayer.com/fixer/latest
+API_KEY_CURRENCY_API=
+
